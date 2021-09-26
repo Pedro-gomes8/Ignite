@@ -7,4 +7,5 @@ Babel:
 WebPack:
     Bundle guy. Takes modules, dependencies and creates static assets that can be 'understood' by the browser.
 
-    
+Cross-env:
+    Makes it possible to easily create environment variables, no matter what operational system (between windows, UNIX and some UNIX-like) the developer is using.

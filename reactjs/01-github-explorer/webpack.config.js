@@ -34,8 +34,12 @@ module.exports = {
                 test: /\.jsx$/, // tests file for jsx extension
                 exclude: /node_modules/, // excluding the void
                 use: 'babel-loader' // Babel, come translate my code
-            }
-        ]
+            },
+            {
+                test: /\.css$/, // tests file for css extension
+                exclude: /node_modules/, // excluding the void
+                use: ['style-loader', 'css-loader'] // Uses both loaders on css files
+            }]
     }
 
 

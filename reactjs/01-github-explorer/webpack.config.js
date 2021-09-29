@@ -8,7 +8,7 @@ module.exports = {
     mode: isDevelopment ? 'development' : 'production',
     devtool: isDevelopment ? 'eval-source-map' : 'source-map',
     // Entry file of the application
-    entry: path.resolve(__dirname, 'src', 'index.jsx'),
+    entry: path.resolve(__dirname, 'src', 'index.tsx'),
 
     // Output webpack file:
     output: {
@@ -16,9 +16,9 @@ module.exports = {
         filename: 'bundle.js'
     },
 
-    // Reads jsx and js files
+    // Reads js and typescript file formats
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     devServer: {
         static: {
@@ -35,7 +35,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx$/, // tests file for jsx extension
+                test: /\.(j|t)sx$/, // tests file for jsx extension
                 exclude: /node_modules/, // excluding the void
                 use: {
                     loader: 'babel-loader',

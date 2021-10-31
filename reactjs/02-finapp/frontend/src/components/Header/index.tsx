@@ -1,12 +1,20 @@
 import logoImg from '../../assets/images/logo.svg';
 import { Container, Content } from './styles';
-export function Header() {
+
+interface IHeaderProps {
+    onOpenNewTransactionModel: () => void;
+}
+
+
+export function Header({ onOpenNewTransactionModel }: IHeaderProps) {
+
     return (
         <Container>
             <Content>
                 <img src={logoImg} alt="dt money" />
-                <button type='button'>New transaction</button>
+                <button type='button' onClick={onOpenNewTransactionModel}>New transaction</button>
             </Content>
+
         </Container>
     )
 }

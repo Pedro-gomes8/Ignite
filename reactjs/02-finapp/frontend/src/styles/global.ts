@@ -5,16 +5,17 @@ export const GlobalStyle = createGlobalStyle`
     --background: #f0f2f5;
     --shape: #ffffff;
     --red: #e52e4d;
+    --green: #33CC95;
     --purple: #5429cc;
 
-    --purple-light:#6933ff;
+    --purple-light: #6933ff;
 
     --text-title: #363f5f;
-    --text-body:#969cb3;
+    --text-body: #969cb3;
 }
 * {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 html{ 
@@ -27,7 +28,7 @@ html{
 
 }
 body { 
-    background:var(---background);
+    background: var(--background);
     -webkit-font-smoothing: antialiased;
 }
 body,input,textarea,button {
@@ -41,6 +42,6 @@ button {
     cursor: pointer;
 }
 [disabled]{
-    opacity:0.6;
+    opacity: 0.6;
     cursor: not-allowed;
 }`

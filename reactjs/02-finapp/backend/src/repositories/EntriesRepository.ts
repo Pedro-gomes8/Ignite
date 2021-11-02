@@ -4,6 +4,7 @@ interface ICreateEntryDTO {
   title: string;
   price: number;
   category: string;
+  transactionType: "deposit" | "withdrawal";
 }
 
 class EntriesRepository {
@@ -15,15 +16,17 @@ class EntriesRepository {
     this.balance = 0;
   }
 
-  create({ title, price, category }: ICreateEntryDTO): void {
+  create({ title, price, category, transactionType }: ICreateEntryDTO): void {
     const entry = new DashboardEntry();
-    Object.assign(entry, { title, price, category });
-    this.#setBalance(price);
+    Object.assign(entry, { title, price, category, transactionType });
+    this.#setBalance(price, transactionType);
     this.entries.push(entry);
   }
 
-  #setBalance(price: number): void {
-    if (this.balance + price < 0) throw new Error("Not enough funds");
+  #setBalance(price: number, transactionType: string): void {
+    if (transactionType === "withdrawal" && this.balance - price < 0) {
+      throw new Error("Not enough funds");
+    }
     this.balance += price;
   }
   getBalance(): number {

@@ -5,17 +5,10 @@ import { EntriesRepository } from "../repositories/EntriesRepository";
 const dashboardRoutes = Router();
 const entriesRepository = new EntriesRepository();
 
-function parseMoney(price: string): number {
-  return Number(price.replace(/[^0-9.-]+/g, ""));
-}
-
 dashboardRoutes.post("/", (req, res) => {
-  let { price } = req.body;
-  const { title, category } = req.body;
+  const { title, category, transactionType, price } = req.body;
 
-  price = parseMoney(price);
-
-  entriesRepository.create({ title, price, category });
+  entriesRepository.create({ title, price, category, transactionType });
 
   return res.status(201).send();
 });

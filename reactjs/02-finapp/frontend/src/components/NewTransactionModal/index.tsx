@@ -1,7 +1,5 @@
 import Modal from 'react-modal'
-import { FormEvent, useState, useContext } from 'react'
-
-import { TransactionsContext } from '../../TransactionsContext'
+import { FormEvent, useState } from 'react'
 
 import incomeImg from '../../assets/images/income.svg'
 import outcomeImg from '../../assets/images/outcome.svg'
@@ -9,6 +7,7 @@ import closeButton from '../../assets/images/closebutton.svg'
 
 
 import { Form, TransactionTypeContainer, Button } from './styles'
+import { useTransactions } from '../../hooks/useTransactions'
 
 interface INewTransactionModalProps {
     isOpen: boolean;
@@ -17,7 +16,7 @@ interface INewTransactionModalProps {
 
 
 export function NewTransactionModal({ isOpen, onRequestClose }: INewTransactionModalProps) {
-    const { createTransaction } = useContext(TransactionsContext)
+    const { createTransaction } = useTransactions();
 
     const [transactionType, setTransactionType] = useState<"deposit" | "withdrawal">('' as "deposit" | "withdrawal");
     const [title, setTitle] = useState('');

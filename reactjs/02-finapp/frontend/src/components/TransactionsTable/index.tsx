@@ -1,23 +1,14 @@
-import { useEffect, useState } from "react";
-import { api } from "../../services/api";
+import { useContext } from "react";
+import { TransactionsContext } from "../../TransactionsContext";
 import { Container } from "./styles";
 
-interface ITransaction {
-    id: string;
-    title: string;
-    price: number;
-    category: string;
-    createdAt: Date;
-    transactionType: 'deposit' | 'withdrawal'
-}
-
 export function TransactionsTable() {
-    const [transactions, setTransactions] = useState<ITransaction[]>([]);
-    useEffect(() => {
-        api.get('/dashboard')
-            .then(response => setTransactions(response.data));
-    }, []);
+    const { transactions } = useContext(TransactionsContext);
 
+    const getLocale = () => {
+        return (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.language;
+    }
+    const locale = getLocale();
     return (
         <Container>
             <table>
@@ -30,12 +21,11 @@ export function TransactionsTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {transactions.map((transaction: ITransaction) => {
-                        console.log(transaction.createdAt);
+                    {transactions.map((transaction) => {
                         return (
                             <tr key={transaction.id}>
                                 <td>{transaction.title}</td>
-                                <td className={transaction.transactionType === 'deposit' ? 'income' : 'withdraw'}>{new Intl.NumberFormat('pt-BR', {
+                                <td className={transaction.transactionType === 'deposit' ? 'income' : 'withdraw'}>{new Intl.NumberFormat(locale, {
                                     style: 'currency',
                                     currency: 'BRL'
                                 }).format(transaction.price)}</td>

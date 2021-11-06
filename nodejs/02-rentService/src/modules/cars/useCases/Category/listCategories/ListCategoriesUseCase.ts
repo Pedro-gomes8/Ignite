@@ -1,5 +1,5 @@
-import { Category } from "../../model/Category";
-import { ICategoriesRepository } from "../../types/ICategoriesRepository";
+import { Category } from "../../../model/Category";
+import { ICategoriesRepository } from "../../../types/ICategoriesRepository";
 
 class ListCategoriesUseCase {
   private categoriesRepository: ICategoriesRepository;
@@ -9,9 +9,9 @@ class ListCategoriesUseCase {
   }
 
   execute(): Category[] {
-    const categories = this.categoriesRepository.list();
+    const allCategories = this.categoriesRepository.list();
 
-    return categories;
+    return allCategories;
   }
 }
 export { ListCategoriesUseCase };

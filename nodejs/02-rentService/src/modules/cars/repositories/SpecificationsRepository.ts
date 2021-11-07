@@ -2,7 +2,7 @@ import { Specification } from "../model/Specification";
 import {
   ICreateSpecificationDTO,
   ISpecificationsRepository,
-} from "../types/ISpecificationsRepository";
+} from "./types/ISpecificationsRepository";
 
 class SpecificationsRepository implements ISpecificationsRepository {
   private specifications: Specification[];

@@ -62,22 +62,153 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
                       "name": {
                         "type": "string"
                       },
                       "description": {
                         "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "format": "date"
                       }
                     }
                   },
                   "example": [
                     {
+                      "id": "dnwiund3u2-dwndwjnHNWD-DWasvkf",
                       "name": "Category name 1",
-                      "description": "Category description 1"
+                      "description": "Category description 1",
+                      "created_at": "12/12/12"
                     },
                     {
+                      "id": "de2a8snw-DwmflvDwiuam-Dwod3",
                       "name": "Category name 2",
-                      "description": "Category description 2"
+                      "description": "Category description 2",
+                      "created_at": "12/12/12"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories/import": {
+      "post": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Import category CSV file",
+        "description": "Upload a CSV file for categories data",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/specifications": {
+      "post": {
+        "tags": [
+          "Specification"
+        ],
+        "summary": "Create specification",
+        "description": "Inserts a new specification object into the database",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Specification Example Name",
+                  "description": "This is an description example for Specification Example Name"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Specification name already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Specification"
+        ],
+        "summary": "List all Specifications",
+        "description": "Gets a copy of all specification objects in the database",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "format": "date"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "id": "dnwiund3u2-dwndwjnHNWD-DWasvkf",
+                      "name": "Specification name 1",
+                      "description": "Specification description 1",
+                      "created_at": "12/12/12"
+                    },
+                    {
+                      "id": "de2a8snw-DwmflvDwiuam-Dwod3",
+                      "name": "Specification name 2",
+                      "description": "Specification description 2",
+                      "created_at": "12/12/12"
                     }
                   ]
                 }

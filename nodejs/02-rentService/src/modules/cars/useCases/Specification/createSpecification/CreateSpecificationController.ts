@@ -11,9 +11,13 @@ class CreateSpecificationController {
 
   handle(req: Request, res: Response): Response {
     const { name, description } = req.body;
-    this.createSpecificationUseCase.execute({ name, description });
+    try {
+      this.createSpecificationUseCase.execute({ name, description });
 
-    return res.status(201).send();
+      return res.status(201).send();
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
   }
 }
 
